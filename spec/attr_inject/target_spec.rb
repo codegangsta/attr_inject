@@ -47,4 +47,14 @@ describe Inject::Target do
 
     c.foo.should == "hello Class"
   end
+
+  it "can have default values" do
+    c = Class.new
+    t = Inject::Target.new c.class, :foo, :default => "hello world"
+
+    params = {}
+    t.inject params
+
+    c.foo.should == "hello world"
+  end
 end

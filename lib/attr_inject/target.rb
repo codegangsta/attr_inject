@@ -11,17 +11,11 @@ module Inject
 
     def inject(params)
       validate! params
-      klass.instance_variable_set "@#{attribute}", attribute_value(params)
+      set_value attribute_value(params) if params.include?(attribute)
     end
 
     def required?
       @required
-    end
-
-    def attribute_value(params)
-      val = params[attribute]
-      val = val.call(klass) if val.respond_to?(:call)
-      val
     end
 
     private
@@ -31,6 +25,16 @@ module Inject
       }
 
       klass.send(:define_method, attribute, &accessor_method)
+    end
+
+    def attribute_value(params)
+      val = params[attribute]
+      val = val.call(klass) if val.respond_to?(:call)
+      val
+    end
+
+    def set_value(val)
+      klass.instance_variable_set "@#{attribute}", val
     end
 
     def attribute
@@ -51,8 +55,12 @@ module Inject
 
     def apply_options(options)
       options = { :required => true }.merge!(options)
-
       @required = options[:required]
+
+      if options.include?(:default)
+        @required = false
+        set_value options[:default]
+      end
     end
 
   end
