@@ -12,6 +12,7 @@ class InjectViaInitialize
 
   attr_inject :bat
   attr_inject :baz
+  attr_inject :blam, :required => false
 
   def initialize(params)
     inject_attributes params
@@ -36,6 +37,6 @@ describe "attr_inject" do
   end
 
   it "raises an error when an required attribute is unfulfiled" do
-    expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(InjectionError)
+    expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(Inject::InjectionError)
   end
 end
