@@ -36,6 +36,6 @@ describe "attr_inject" do
   end
 
   it "raises an error when an required attribute is unfulfiled" do
-    expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(InjectionError)
+    expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(Inject::InjectionError)
   end
 end
