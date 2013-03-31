@@ -1,6 +1,6 @@
 class Class
-  def attr_inject(attribute, params={})
-    __inject_targets << Inject::Target.new(self, attribute, params)
+  def attr_inject(attribute, options={})
+    __inject_targets << Inject::Target.new(self, attribute, options)
   end
 
   def __inject_targets
