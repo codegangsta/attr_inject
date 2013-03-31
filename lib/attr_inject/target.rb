@@ -15,7 +15,7 @@ module Inject
 
     def inject(params)
       if !params.include? @attribute
-        raise InjectionError, "Param #{@attribute} is required."
+        raise InjectionError, ":#{@attribute} is required for dependency injection."
       end
 
       @clazz.instance_variable_set "@#{@attribute}", params[@attribute]
