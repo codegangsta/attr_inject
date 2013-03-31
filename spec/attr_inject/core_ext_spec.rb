@@ -34,4 +34,8 @@ describe "attr_inject" do
     i.bat.should == a_string
     i.baz.should == an_array
   end
+
+  it "raises an error when an required attribute is unfulfiled" do
+    expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(InjectionError)
+  end
 end

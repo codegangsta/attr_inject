@@ -1,0 +1,2 @@
+class InjectionError < Exception
+end
