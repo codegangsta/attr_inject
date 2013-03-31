@@ -28,4 +28,23 @@ describe Inject::Target do
     t = Inject::Target.new c.class, :foo, :required => false
     t.required?.should == false
   end
+
+  it "looks up the attribute with find_attribute" do
+    c = Class.new
+    t = Inject::Target.new c.class, :foo
+
+    params = {:foo => "foobar"}
+    t.should_receive(:attribute_value).with(params)
+    t.inject params
+  end
+
+  it "calls a factory proc if the attribute value is a block" do
+    c = Class.new
+    t = Inject::Target.new c.class, :foo
+
+    params = {:foo => Proc.new{ |obj| "hello #{obj.to_s}"}}
+    t.inject params
+
+    c.foo.should == "hello Class"
+  end
 end

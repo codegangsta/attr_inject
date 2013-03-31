@@ -11,11 +11,17 @@ module Inject
 
     def inject(params)
       validate! params
-      klass.instance_variable_set "@#{attribute}", params[attribute]
+      klass.instance_variable_set "@#{attribute}", attribute_value(params)
     end
 
     def required?
       @required
+    end
+
+    def attribute_value(params)
+      val = params[attribute]
+      val = val.call(klass) if val.respond_to?(:call)
+      val
     end
 
     private
