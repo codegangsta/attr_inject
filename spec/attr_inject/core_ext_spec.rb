@@ -12,6 +12,7 @@ class InjectViaInitialize
 
   attr_inject :bat
   attr_inject :baz
+  attr_inject :blam, :required => false
 
   def initialize(params)
     inject_attributes params

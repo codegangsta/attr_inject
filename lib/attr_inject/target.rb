@@ -5,12 +5,17 @@ module Inject
       @klass = klass
       @attribute = attribute
 
+      apply_options options
       add_accessor(attribute, klass)
     end
 
     def inject(params)
       validate! params
       klass.instance_variable_set "@#{attribute}", params[attribute]
+    end
+
+    def required?
+      @required
     end
 
     private
@@ -31,11 +36,17 @@ module Inject
     end
 
     def validate!(params)
-      raise_required_error! unless params.include?(attribute)
+      raise_required_error! unless params.include?(attribute) || !required?
     end
 
     def raise_required_error!
       raise InjectionError, ":#{attribute} is required for dependency injection."
+    end
+
+    def apply_options(options)
+      options = { :required => true }.merge!(options)
+
+      @required = options[:required]
     end
 
   end
