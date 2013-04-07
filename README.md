@@ -2,14 +2,14 @@
 
 attr\_inject is an small and elegant dependency injection solution for Ruby.
 
-#Intallation
+#Installation
 
 # Usage
 
 Create an Injector to map objects and factories to.
 
 ~~~ ruby
-require "attr\_inject"
+require "attr_inject"
 
 class Application
   include Inject
@@ -38,9 +38,9 @@ Our car object explicitly defines what dependencies it wants.
 ~~~ ruby
 class Car
 
-  attr\_inject :driver
-  attr\_inject :passenger
-  attr\_inject :driver
+  attr_inject :driver
+  attr_inject :passenger
+  attr_inject :driver
 
 end
 ~~~
