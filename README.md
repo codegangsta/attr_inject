@@ -1,19 +1,46 @@
-= attr_inject
+# attr\_inject
 
-Description goes here.
+attr\_inject is an small and elegant dependency injection solution for Ruby.
 
-== Contributing to attr_inject
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+#Intallation
 
-== Copyright
+# Usage
 
-Copyright (c) 2013 Jeremy Saenz. See LICENSE.txt for
-further details.
+Create an Injector to map objects and factories to.
 
+~~~ ruby
+require "attr\_inject"
+
+class Application
+  include Inject
+
+  # Map our depedencies
+  injector = Injector.new
+  injector.map :driver, Driver.new
+  injector.map :passenger, Passenger.new
+
+  # Factory dependencies are called
+  # on each inject and are passed it's
+  # target object
+  injector.factory :logger do |target|
+    Logger.new(target)
+  end
+
+  # Inject our dependencies into our car object
+  car = Car.new
+  injector.apply(car)
+
+end
+~~~
+
+Our car object explicitly defines what dependencies it wants.
+
+~~~ ruby
+class Car
+
+  attr\_inject :driver
+  attr\_inject :passenger
+  attr\_inject :driver
+
+end
+~~~
