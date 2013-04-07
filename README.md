@@ -5,6 +5,9 @@ attr\_inject is an small and elegant dependency injection solution for Ruby.
 #Installation
 
 # Usage
+## Simple Example
+## Injector Example
+## Factory Example
 
 Create an Injector to map objects and factories to.
 
