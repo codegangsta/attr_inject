@@ -33,4 +33,19 @@ describe Inject::Injector do
     test_stub.should_receive(:inject_attributes).with(injector)
     injector.apply test_stub
   end
+
+  it "allows the use of a parent injector" do
+    result = {:foo => "foo_string", :bar => "bar_string", :bat => "bat_string"}
+    test_stub.should_receive(:inject_attributes).with(result)
+
+    injector.map(:foo, "foo_string")
+    injector.map(:bar, "bar_string")
+
+    parent = Inject::Injector.new
+    injector.parent = parent
+    parent.map(:bat, "bat_string")
+    parent.map(:foo, "not_foo")
+
+    injector.apply(test_stub)
+  end
 end

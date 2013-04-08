@@ -2,6 +2,8 @@ module Inject
 
   class Injector < Hash
 
+    attr_accessor :parent
+
     def map(key, val)
       self[key] = val
     end
@@ -12,7 +14,8 @@ module Inject
     end
 
     def apply(target)
-      target.inject_attributes self
+      hash = parent ? parent.merge(self) : self
+      target.inject_attributes hash
     end
 
   end
