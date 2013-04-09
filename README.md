@@ -3,9 +3,39 @@
 attr\_inject is an small and elegant dependency injection solution for Ruby.
 
 #Installation
+`gem install attr_inject`
 
 # Usage
+attr\_inject can be used many ways scaling from the least inrtusive to more inrusive options. 
+
 ## Simple Example
+Dependencies are injected via a Hash through the Object's constructor.
+
+~~~ ruby
+class Application
+  
+  # initialize our dependencies
+  driver = Driver.new
+  passenger = Passenger.new
+
+  # inject our dependencies into our Car object
+  car = Car.new :driver => driver, :passenger => passenger
+
+end
+~~
+
+~~~ ruby
+class Car
+  attr_inject :driver
+  attr_inject :passenger
+
+  def initialize(options)
+    inject_attributes options
+  end
+
+end
+~~~
+
 ## Injector Example
 ## Factory Example
 
@@ -43,7 +73,7 @@ class Car
 
   attr_inject :driver
   attr_inject :passenger
-  attr_inject :driver
+  attr_inject :logger
 
 end
 ~~~
