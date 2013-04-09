@@ -22,7 +22,7 @@ class Application
   car = Car.new :driver => driver, :passenger => passenger
 
 end
-~~
+~~~
 
 ~~~ ruby
 class Car
