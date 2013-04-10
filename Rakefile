@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "attr_inject"
   gem.homepage = "http://github.com/jeremysaenz/attr_inject"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Elegant dependency injection in Ruby.}
+  gem.description = %Q{attr_inject is a simple dependency injection solution for ruby.}
   gem.email = "jeremy.saenz@gmail.com"
   gem.authors = ["Jeremy Saenz"]
   # dependencies defined in Gemfile
