@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeremy Saenz"]
   s.date = "2013-04-10"
-  s.description = "TODO: longer description of your gem"
+  s.description = "attr_inject is a simple dependency injection solution for ruby."
   s.email = "jeremy.saenz@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "attr_inject.gemspec",
     "lib/attr_inject.rb",
     "lib/attr_inject/core_ext.rb",
     "lib/attr_inject/exceptions.rb",
@@ -40,7 +41,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Elegant dependency injection in Ruby."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
