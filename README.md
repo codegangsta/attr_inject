@@ -25,7 +25,7 @@ end
 ~~~
 
 ~~~ ruby
-class car
+class Car
   attr_inject :driver
   attr_inject :passenger
 
@@ -56,7 +56,7 @@ end
 ~~~
 
 ~~~ ruby
-class car
+class Car
   attr_inject :driver
   attr_inject :passenger
 end
