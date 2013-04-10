@@ -25,7 +25,7 @@ end
 ~~~
 
 ~~~ ruby
-class Car
+class car
   attr_inject :driver
   attr_inject :passenger
 
@@ -37,8 +37,32 @@ end
 ~~~
 
 ## Injector Example
-## Factory Example
+For more inversion of control, an Injector can be used.
 
+~~~ ruby
+class Application
+  include Inject
+
+  # Map our depedencies
+  injector = Injector.new
+  injector.map :driver, Driver.new
+  injector.map :passenger, Passenger.new
+
+  # Inject our dependencies into our car object
+  car = Car.new
+  injector.apply(car)
+
+end
+~~~
+
+~~~ ruby
+class car
+  attr_inject :driver
+  attr_inject :passenger
+end
+~~~
+
+## Factory Example
 Create an Injector to map objects and factories to.
 
 ~~~ ruby
