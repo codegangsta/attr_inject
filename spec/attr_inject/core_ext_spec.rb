@@ -20,6 +20,11 @@ class InjectViaInitialize
 
 end
 
+class BlankClass
+  def initialize
+  end
+end
+
 describe "attr_inject" do
   it "creates a method with attr_inject" do
     i = SimpleInject.new
@@ -39,4 +44,10 @@ describe "attr_inject" do
   it "raises an error when an required attribute is unfulfiled" do
     expect{InjectViaInitialize.new :foo => "bar"}.to raise_error(Inject::InjectionError)
   end
+
+  it "allows injection on classes with no attr_inject" do
+    blank = BlankClass.new
+    blank.inject_attributes :foo => "foo", :bar => "bar"
+  end
+
 end
